@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TdButton } from './td-button';
+import { TodoModal } from './todo-modal';
 
-describe('TdButton', () => {
-  let component: TdButton;
-  let fixture: ComponentFixture<TdButton>;
+describe('TodoModal', () => {
+  let component: TodoModal;
+  let fixture: ComponentFixture<TodoModal>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TdButton]
+      imports: [TodoModal]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TdButton);
+    fixture = TestBed.createComponent(TodoModal);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

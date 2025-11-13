@@ -1,15 +1,18 @@
+import db from '../../database/db';
 import { TaskDto } from "../dto/taskDto";
 
-let tasks: TaskDto[] = [];
+// Buscar todas as tasks
+export async function getAll(): Promise<TaskDto[]> {
+  return await db<TaskDto>('tasks').select('*');
+}
 
-export const getAll = () => tasks;
+// Criar uma nova task
+export async function create(description: string, completed: boolean): Promise<TaskDto> {
+  const [id] = await db('tasks').insert({ description, completed });
+  return { id, description, completed };
+}
 
-export const create = ( description: string, done: boolean) => {
-    const newTask: TaskDto = { id: tasks.length + 1, description, done };
-    tasks.push(newTask);
-    return newTask
-};
-
-export const remove = (id: number) => {
-    tasks = tasks.filter(task => task.id !==id);
-}; 
+// Remover uma task
+export async function remove(id: number): Promise<void> {
+  await db('tasks').where({ id }).del();
+}
