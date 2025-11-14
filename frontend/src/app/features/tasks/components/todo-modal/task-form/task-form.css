@@ -1,0 +1,26 @@
+.form-control.main {
+  box-shadow: none;
+}
+
+.form-control::placeholder {
+  color: #a1a1a1;
+}
+
+.row {
+  align-items: center;
+}
+
+.input-task {
+  /* width: 75%; */
+  margin-top: 10px;
+}
+
+.add {
+  background-color: #4a90e2;
+  border-radius: 20px;
+  border: none;
+}
+
+button {
+  border-radius: 20px;
+}

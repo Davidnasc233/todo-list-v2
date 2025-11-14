@@ -3,22 +3,6 @@
     <div class="m-header">
       <h3>{{ title }}</h3>
     </div>
-    <div class="input-task d-flex">
-      <input type="text" class="form-control" placeholder="Adicione uma task..." id="taskInput" name="taskInput" />
-      <button class="btn btn-primary">add</button>
-    </div>
-    @if (tasks && tasks.length) {
-    <div class="main-content">
-      <div class="task-size" *ngFor="let task of tasks">
-        <div class="ms-2">
-          <input type="radio" [checked]="task.completed === 1" />
-          <span class="ms-2"> {{ task.description }}</span>
-        </div>
-        <button class="btn btn-outline-danger me-2" (click)="removerTask(task.id)">Del</button>
-      </div>
-    </div>
-    } @else {
-    <p>Não há tarefas inseridas</p>
-    }
+    <app-task-form class="w-100"></app-task-form>
   </div>
 </div>

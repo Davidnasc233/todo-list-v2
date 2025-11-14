@@ -1,5 +1,5 @@
 .container {
-  width: 400px;
+  max-width: 500px;
   height: fit-content;
   display: flex;
   justify-content: center;
@@ -35,32 +35,6 @@
 .m-header h3 {
   margin: 0 15px;
   font-weight: bold;
-}
-
-.form-control {
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  box-shadow: none;
-}
-
-.form-control::placeholder {
-  color: #a1a1a1;
-}
-
-.input-task {
-  width: 75%;
-  margin-top: 10px;
-}
-
-.input-task button {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-  background-color: #4a90e2;
-  border: none;
 }
 
 .main-content {

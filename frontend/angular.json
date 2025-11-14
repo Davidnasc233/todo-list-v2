@@ -22,10 +22,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css",
-              "C:/Users/User/Documents/ESTUDOS/todo-list-v2/frontend/node_modules/bootstrap/dist/css/bootstrap.min.css"
-            ]
+            "styles": ["src/styles.css", "./node_modules/bootstrap/dist/css/bootstrap.min.css"]
           },
           "configurations": {
             "production": {
@@ -82,5 +79,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { TaskForm } from "./task-form/task-form";
 
 @Component({
   selector: 'app-todo-modal',
-  imports: [CommonModule],
+  imports: [CommonModule, TaskForm],
   templateUrl: './todo-modal.html',
   styleUrl: './todo-modal.css',
 })
