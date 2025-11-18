@@ -7,8 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './management-tasks.css',
 })
 export class ManagementTasks {
-removerTask(arg0: any) {
-throw new Error('Method not implemented.');
-}
   @Input() tasks: any[] = [];
 }

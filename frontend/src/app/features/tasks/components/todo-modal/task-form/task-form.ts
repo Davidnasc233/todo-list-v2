@@ -13,5 +13,5 @@ export class TaskForm {
     { id: 1, risco: 'Média', color: '#FFA500' }, // Orange for medium
     { id: 2, risco: 'Alta', color: '#FF0000' },  // Red for high
   ];
-selectedPriority: any;
+  selectedPriority: any;
 }

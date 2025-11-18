@@ -1,12 +1,21 @@
 @if (tasks && tasks.length) {
 <div class="main-content">
-  <div class="task-size" *ngFor="let task of tasks">
+  @for (task of tasks; track task.id) {
+    <div class="task-size">
+      <div class="ms-2">
+        <input type="radio" [checked]="task.completed === 1" />
+        <span class="ms-2"> {{ task.description }}</span>
+      </div>
+      <button class="btn btn-outline-danger me-2">Del</button>
+    </div>
+  }
+  <!-- <div class="task-size" *ngFor="let task of tasks">
     <div class="ms-2">
       <input type="radio" [checked]="task.completed === 1" />
       <span class="ms-2"> {{ task.description }}</span>
     </div>
-    <button class="btn btn-outline-danger me-2" (click)="removerTask(task.id)">Del</button>
-  </div>
+    <button class="btn btn-outline-danger me-2" >Del</button>
+  </div> -->
 </div>
 } @else {
 <p>Não há tarefas inseridas</p>

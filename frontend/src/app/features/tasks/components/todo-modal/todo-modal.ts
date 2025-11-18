@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { TaskForm } from "./task-form/task-form";
+import { ManagementTasks } from "../management-tasks/management-tasks";
+import { TodoService } from '../services/todo.service';
 
 @Component({
   selector: 'app-todo-modal',
-  imports: [CommonModule, TaskForm],
+  imports: [CommonModule, TaskForm, ManagementTasks],
   templateUrl: './todo-modal.html',
   styleUrl: './todo-modal.css',
 })
@@ -12,13 +14,22 @@ export class TodoModal {
   title: string = 'Minhas Tarefas';
   taskDescription: string = 'teste';
 
-  tasks = [
-    { id: 1, description: 'Teste 1', completed: 0 },
-    { id: 2, description: 'Teste 2', completed: 1 },
-    { id: 3, description: 'Teste 3', completed: 0 },
-  ];
+  tasks = [];
 
-  removerTask(id: number) {
-   this.tasks = this.tasks.filter(task => task.id !== id)
+  constructor(
+    private todoService: TodoService
+  ) {}
+
+  ngOnInit() {
+    this.todoService.getTasks().subscribe((data: any) => {
+      this.tasks = data;
+    });
   }
+
+  // removerTask(id: number) {
+  //  this.tasks = this.tasks.filter(task => task.id !== id)
+  // }
+
 }
+
+

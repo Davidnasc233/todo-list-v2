@@ -36,20 +36,3 @@
   margin: 0 15px;
   font-weight: bold;
 }
-
-.main-content {
-  width: 75%;
-  display: block;
-  align-items: center;
-}
-
-.task-size {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 50px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 6px;
-  margin-top: 10px;
-}
