@@ -6,7 +6,7 @@
         <input type="radio" [checked]="task.completed === 1" />
         <span class="ms-2"> {{ task.description }}</span>
       </div>
-      <button class="btn btn-outline-danger me-2">Del</button>
+      <button class="btn btn-outline-danger me-2" (click)="removerTask(task.id)">Delete</button>
     </div>
   }
   <!-- <div class="task-size" *ngFor="let task of tasks">

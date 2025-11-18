@@ -11,10 +11,8 @@ import { TodoService } from '../services/todo.service';
   styleUrl: './todo-modal.css',
 })
 export class TodoModal {
-  title: string = 'Minhas Tarefas';
-  taskDescription: string = 'teste';
-
-  tasks = [];
+  title: string = 'Minhas Tarefas'; 
+  tasks: any[] = [];
 
   constructor(
     private todoService: TodoService
@@ -26,9 +24,11 @@ export class TodoModal {
     });
   }
 
-  // removerTask(id: number) {
-  //  this.tasks = this.tasks.filter(task => task.id !== id)
-  // }
+  onTaskRemoved(id: number) {
+    this.tasks = this.tasks.filter(task => task.id !== id);
+    // Ou, se preferir, recarregue toda a lista:
+    // this.todoService.getTasks().subscribe((data: any) => { this.tasks = data; });
+  }
 
 }
 

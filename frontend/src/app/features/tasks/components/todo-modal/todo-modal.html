@@ -13,7 +13,12 @@
       <div class="m-header">
       </div>
       <section style="width: 100%;">
-        <app-management-tasks [tasks]="tasks" class="d-flex align-content-start ms-2 me-2"></app-management-tasks>
+        <app-management-tasks 
+        [tasks]="tasks" 
+        class="d-flex align-content-start ms-2 me-2"
+        (taskRemoved)="onTaskRemoved($event)"
+        ></app-management-tasks>
+        
       </section>
     </div>
   </div>
