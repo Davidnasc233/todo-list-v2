@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { TaskForm } from "./task-form/task-form";
-import { ManagementTasks } from "../management-tasks/management-tasks";
+import { TaskForm } from './task-form/task-form';
+import { ManagementTasks } from '../management-tasks/management-tasks';
 import { TodoService } from '../services/todo.service';
 
 @Component({
@@ -11,25 +11,32 @@ import { TodoService } from '../services/todo.service';
   styleUrl: './todo-modal.css',
 })
 export class TodoModal {
-  title: string = 'Minhas Tarefas'; 
+  title: string = 'Minhas Tarefas';
   tasks: any[] = [];
+  loading: boolean = true;
 
-  constructor(
-    private todoService: TodoService
-  ) {}
+  constructor(private todoService: TodoService) {}
 
   ngOnInit() {
-    this.todoService.getTasks().subscribe((data: any) => {
-      this.tasks = data;
-    });
+    this.loading = true;
+    setTimeout(() => {
+      this.todoService.getTasks().subscribe({
+        next: (data: any) => {
+          this.tasks = data;
+          this.loading = false;
+        },
+        error: () => {
+          this.loading = false;
+        },
+      });
+    }, 1000); // 1.5 segundos de delay
+  }
+
+  onTaskAdded(task: any) {
+    this.tasks = [...this.tasks, task];
   }
 
   onTaskRemoved(id: number) {
-    this.tasks = this.tasks.filter(task => task.id !== id);
-    // Ou, se preferir, recarregue toda a lista:
-    // this.todoService.getTasks().subscribe((data: any) => { this.tasks = data; });
+    this.tasks = this.tasks.filter((task) => task.id !== id);
   }
-
 }
-
-

@@ -1,24 +1,23 @@
-<div style="gap: 1rem; display: flex; flex-direction: column;">
+<div style="gap: 1rem; display: flex; flex-direction: column">
   <div class="container">
     <div class="content">
       <div class="m-header">
         <h3>{{ title }}</h3>
       </div>
-      <app-task-form class="w-100"></app-task-form>
+      <app-task-form class="w-100" (taskAdded)="onTaskAdded($event)"></app-task-form>
     </div>
   </div>
 
   <div class="container">
     <div class="content">
-      <div class="m-header">
-      </div>
-      <section style="width: 100%;">
-        <app-management-tasks 
-        [tasks]="tasks" 
-        class="d-flex align-content-start ms-2 me-2"
-        (taskRemoved)="onTaskRemoved($event)"
+      <div class="m-header"></div>
+      <section style="width: 100%">
+        <app-management-tasks
+          [tasks]="tasks"
+          [loading]="loading"
+          class="d-flex align-content-start ms-2 me-2"
+          (taskRemoved)="onTaskRemoved($event)"
         ></app-management-tasks>
-        
       </section>
     </div>
   </div>

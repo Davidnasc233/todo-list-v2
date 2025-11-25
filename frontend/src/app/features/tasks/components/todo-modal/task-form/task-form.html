@@ -7,30 +7,42 @@
       <span>Prioridade</span>
     </div>
   </div>
-  <div class="row d-flex">
-    <div class="input-task d-flex flex-column col-8">
-      <div class="d-flex">
-        <input
-          type="text"
-          class="form-control main"
-          placeholder="Adicione uma task..."
-          id="taskInput"
-          name="taskInput"
-        />
+  <form>
+    <div class="row d-flex">
+      <div class="input-task d-flex flex-column col-8">
+        <div class="d-flex">
+          <input
+            type="text"
+            class="form-control main"
+            placeholder="Adicione uma task..."
+            id="taskInput"
+            name="description"
+            [(ngModel)]="form.description"
+          />
+        </div>
+      </div>
+      <div class="priority col mt-2">
+        <select class="form-select" name="selectedPriority" [(ngModel)]="form.selectedPriority">
+          @for (prior of priority; track prior.id) {
+          <option [ngValue]="prior" [ngStyle]="{ color: prior.color }">
+            {{ prior.risco }}
+          </option>
+          } @empty {
+          <span>Não há prioridade</span>
+          }
+        </select>
       </div>
     </div>
-    <div class="priority col mt-2">
-      <select class="form-select">
-        @for (prior of priority; track prior.id) {
-        <option [ngStyle]="{ color: prior.color }">{{ prior.risco }}</option>
-        } @empty {
-        <span>Não há prioridade</span>
-        }
-      </select>
-    </div>
-  </div>
+  </form>
   <div class="button-area d-flex justify-content-end gap-2">
-    <button class="btn btn-outline-danger mt-3">Limpar</button>
-    <button class="btn btn-primary mt-3 add">Adicionar Tarefa</button>
+    <button class="btn btn-outline-danger mt-3" (click)="cleanForm()">Limpar</button>
+    <button
+      class="btn btn-primary mt-3 add"
+      type="submit"
+      (click)="addTask()"
+      [disabled]="!isInputFilled"
+    >
+      Adicionar Tarefa
+    </button>
   </div>
 </div>
