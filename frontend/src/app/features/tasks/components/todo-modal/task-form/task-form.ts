@@ -42,12 +42,7 @@ export class TaskForm {
     };
     this.taskService.createTask(newTask).subscribe((task: Task) => {
       this.taskAdded.emit(task);
-      this.taskForm.reset({
-        title: '',
-        description: '',
-        selectedPriority: this.priority[0],
-        completed: false,
-      });
+      return this.cleanForm();
     });
   }
 
