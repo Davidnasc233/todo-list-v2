@@ -1,28 +1,27 @@
 <div class="container">
-  <div class="row">
-    <div class="col-8">
-      <span class="mb-2">Nome da tarefa</span>
+  <form [formGroup]="taskForm" (ngSubmit)="addTask()">
+    <div class="row">
+      <div class="col-8">
+        <span class="mb-2">Título</span>
+      </div>
+      <div class="col">
+        <span>Prioridade</span>
+      </div>
     </div>
-    <div class="col">
-      <span>Prioridade</span>
-    </div>
-  </div>
-  <form>
     <div class="row d-flex">
       <div class="input-task d-flex flex-column col-8">
         <div class="d-flex">
           <input
             type="text"
             class="form-control main"
-            placeholder="Adicione uma task..."
+            placeholder="Minha tarefa..."
             id="taskInput"
-            name="description"
-            [(ngModel)]="form.description"
+            formControlName="title"
           />
         </div>
       </div>
       <div class="priority col mt-2">
-        <select class="form-select" name="selectedPriority" [(ngModel)]="form.selectedPriority">
+        <select class="form-select" formControlName="selectedPriority">
           @for (prior of priority; track prior.id) {
           <option [ngValue]="prior" [ngStyle]="{ color: prior.color }">
             {{ prior.risco }}
@@ -33,16 +32,32 @@
         </select>
       </div>
     </div>
+    <div class="row">
+      <div class="mt-2">
+        <span class="mb-2">Descrição</span>
+      </div>
+    </div>
+    <div class="row d-flex">
+      <div class="input-task d-flex flex-column">
+        <div class="d-flex">
+          <textarea
+            class="form-control main"
+            placeholder="Adicione uma task..."
+            id="descriptionInput"
+            formControlName="description"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="button-area d-flex justify-content-end gap-2">
+      <button class="btn btn-outline-danger mt-3" type="button" (click)="cleanForm()">Limpar</button>
+      <button
+        class="btn btn-primary mt-3 add"
+        type="submit"
+        [disabled]="taskForm.invalid"
+      >
+        Adicionar Tarefa
+      </button>
+    </div>
   </form>
-  <div class="button-area d-flex justify-content-end gap-2">
-    <button class="btn btn-outline-danger mt-3" (click)="cleanForm()">Limpar</button>
-    <button
-      class="btn btn-primary mt-3 add"
-      type="submit"
-      (click)="addTask()"
-      [disabled]="!isInputFilled"
-    >
-      Adicionar Tarefa
-    </button>
-  </div>
 </div>

@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { TaskService } from '../../../services/task.service';
 import { Task } from '../../../models/task.model';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-task-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './task-form.html',
   styleUrl: './task-form.css',
 })
@@ -18,37 +18,45 @@ export class TaskForm {
     { id: 2, risco: 'Alta', color: '#FF0000' },
   ];
 
-  form = {
-    description: '',
-    selectedPriority: this.priority[0],
-    completed: false,
-  };
+  taskForm: FormGroup;
 
   @Output() taskAdded = new EventEmitter<Task>();
 
-  get isInputFilled(): boolean {
-    return !!this.form.description && this.form.description.trim().length > 0;
+  constructor(private taskService: TaskService, private fb: FormBuilder) {
+    this.taskForm = this.fb.group({
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      selectedPriority: [this.priority[0], Validators.required],
+      completed: [false],
+    });
   }
 
-  constructor(private taskService: TaskService) {}
-
   addTask() {
-    if (!this.form.description) return;
+    if (this.taskForm.invalid) return;
+    const formValue = this.taskForm.value;
     const newTask = {
-      description: this.form.description,
-      completed: this.form.completed,
-      priority: this.form.selectedPriority?.id,
+      title: formValue.title,
+      description: formValue.description,
+      completed: formValue.completed,
+      priority: formValue.selectedPriority?.id,
     };
     this.taskService.createTask(newTask).subscribe((task: Task) => {
       this.taskAdded.emit(task);
-      this.form.description = '';
-      this.form.selectedPriority = this.priority[0];
+      this.taskForm.reset({
+        title: '',
+        description: '',
+        selectedPriority: this.priority[0],
+        completed: false,
+      });
     });
   }
 
   cleanForm() {
-    this.form.description = '';
-    this.form.selectedPriority = this.priority[0];
-    this.form.completed = false;
+    this.taskForm.reset({
+      title: '',
+      description: '',
+      selectedPriority: this.priority[0],
+      completed: false,
+    });
   }
 }

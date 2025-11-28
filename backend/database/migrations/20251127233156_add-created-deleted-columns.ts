@@ -1,0 +1,17 @@
+import type { Knex } from "knex";
+
+
+export async function up(knex: Knex) {
+    return knex.schema.table('tasks', function (table) {
+    table.timestamp('created_at').defaultTo(knex.fn.now());
+    table.timestamp('deleted_at').nullable();
+  });
+}
+
+export async function down(knex: Knex) {
+  return knex.schema.table('tasks', function (table) {
+    table.dropColumn('created_at');
+    table.dropColumn('deleted_at');
+  });
+}
+

@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TodoService } from '../services/todo.service';
 import { Task } from '../../models/task.model';
 import { TaskService } from '../../services/task.service';
-import { Loading } from "../../../../shared/components/loading/loading";
+import { Loading } from '../../../../shared/components/loading/loading';
 
 @Component({
   selector: 'app-management-tasks',

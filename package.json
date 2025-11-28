@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "@testing-library/angular": "^18.1.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "vitest": "^4.0.14"
+  }
+}
