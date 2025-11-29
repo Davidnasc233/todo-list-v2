@@ -14,7 +14,6 @@ export class ManagementTasks {
   @Input() tasks: any[] = [];
   @Input() loading: boolean = false;
   @Output() taskRemoved = new EventEmitter<number>();
-  TaskService: any;
 
   constructor(private todoService: TodoService, private taskService: TaskService) {}
 

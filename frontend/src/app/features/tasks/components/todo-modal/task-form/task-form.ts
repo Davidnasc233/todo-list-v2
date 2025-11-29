@@ -2,7 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { TaskService } from '../../../services/task.service';
 import { Task } from '../../../models/task.model';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+  AbstractControl,
+  ValidationErrors,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-task-form',
@@ -24,8 +31,8 @@ export class TaskForm {
 
   constructor(private taskService: TaskService, private fb: FormBuilder) {
     this.taskForm = this.fb.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
+      title: ['', [Validators.required, this.invalidSpecialChar]],
+      description: ['', [Validators.required, this.invalidSpecialChar]],
       selectedPriority: [this.priority[0], Validators.required],
       completed: [false],
     });
@@ -53,5 +60,14 @@ export class TaskForm {
       selectedPriority: this.priority[0],
       completed: false,
     });
+  }
+
+  invalidSpecialChar(control: AbstractControl): ValidationErrors | null {
+    const value = control.value || '';
+    const regex = /^(?!.*[<>])(?=.*\S).+$/;
+    if (!regex.test(value)) {
+      return { noHtmlAndNoSpaces: true };
+    }
+    return null;
   }
 }
