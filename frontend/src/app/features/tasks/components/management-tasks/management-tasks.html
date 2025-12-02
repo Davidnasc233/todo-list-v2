@@ -2,20 +2,23 @@
 <div class="main-content">
   @for (task of tasks; track task.id) {
   <div class="task-size">
-    <div class="ms-2">
+    <div class="ms-2 d-flex align-items-center justify-content-center">
       <input
         type="checkbox"
         class="form-check-input"
         [checked]="!!task.completed"
         (change)="toggleCompleted(task)"
       />
-      <span class="ms-2"> {{ task.description }}</span>
+      <div class="ms-3 d-flex flex-column info-container">
+        <span class="ms-2" id="title">{{ task.title }}</span>
+        <span class="ms-2" id="description">{{ task.description }}</span>
+      </div>
     </div>
     <div>
       <button class="btn btn-outline-primary me-2">
         <i class="fa-regular fa-pen-to-square"></i>
       </button>
-      <button class="btn btn-outline-danger me-2" (click)="removerTask(task.id)">
+      <button class="btn btn-outline-danger me-2" (click)="openDialog('delete', task)">
         <i class="fa-regular fa-trash-can"></i>
       </button>
     </div>
@@ -23,7 +26,7 @@
   }
 </div>
 } @else if (loading) {
-  <app-loading class="loading-center"></app-loading>
+<app-loading class="loading-center"></app-loading>
 } @else {
 <p>Não há tarefas inseridas</p>
 }

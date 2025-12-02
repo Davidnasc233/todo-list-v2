@@ -7,11 +7,11 @@ export const getTasks = async (req: Request, res: Response) => {
 };
 
 export const createTask = async (req: Request, res: Response) => {
-  const { description, completed, priority } = req.body;
+  const { title, description, completed, priority } = req.body;
   if (!description || typeof completed !== 'boolean') {
     return res.status(400).json({ error: 'Descrição e status são obrigatórios' });
   }
-  const newTask = await TaskRepository.create(description, completed, priority);
+  const newTask = await TaskRepository.create(title, description, completed, priority);
   return res.status(201).json(newTask);
 };
 

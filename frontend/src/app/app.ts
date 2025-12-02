@@ -4,7 +4,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TaskForm } from './features/tasks/components/todo-modal/task-form/task-form';
 import { ManagementTasks } from './features/tasks/components/management-tasks/management-tasks';
 import { CommonModule } from '@angular/common';
-import { Header } from "./shared/components/loading/header/header";
+import { Header } from "./shared/components/header/header";
 
 @Component({
   selector: 'app-root',

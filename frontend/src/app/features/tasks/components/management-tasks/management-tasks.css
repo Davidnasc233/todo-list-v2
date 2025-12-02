@@ -2,8 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 50px;
   background-color: #ffffff;
+  padding: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   gap: 1rem;
@@ -14,10 +14,24 @@
   width: 100%;
 }
 
+.info-container {
+  max-width: 600px;
+}
+
+#title {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+#description {
+  font-size: 0.8rem;
+  color: #636363;
+}
+
 .btn {
   border-radius: 25px;
 }
-/* Centraliza o loading no management-tasks */
+
 .loading-center {
   display: flex;
   flex-direction: column;

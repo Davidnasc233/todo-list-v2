@@ -6,16 +6,17 @@ export class TaskRepository {
     return await db<TaskDto>('tasks').whereNull('deleted_at').select('*');
   }
 
-  static async create(description: string, completed: boolean, priority: number): Promise<TaskDto> {
+  static async create( title: string ,description: string, completed: boolean, priority: number): Promise<TaskDto> {
     const [id] = await db('tasks').insert({
+      title,
       description,
       completed,
       priority,
       created_at: new Date(),
-      // updated_at intentionally omitted
     });
     return {
       id,
+      title,
       description,
       completed,
       priority,

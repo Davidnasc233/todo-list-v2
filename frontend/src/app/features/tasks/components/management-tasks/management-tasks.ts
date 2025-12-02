@@ -3,6 +3,10 @@ import { TodoService } from '../services/todo.service';
 import { Task } from '../../models/task.model';
 import { TaskService } from '../../services/task.service';
 import { Loading } from '../../../../shared/components/loading/loading';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialog } from '../../../../shared/dialogs/confirmation-dialog/confirmation-dialog';
+import { EditDialog } from '../../../../shared/dialogs/edit-dialog/edit-dialog';
+
 
 @Component({
   selector: 'app-management-tasks',
@@ -15,7 +19,11 @@ export class ManagementTasks {
   @Input() loading: boolean = false;
   @Output() taskRemoved = new EventEmitter<number>();
 
-  constructor(private todoService: TodoService, private taskService: TaskService) {}
+  constructor(
+    private todoService: TodoService, 
+    private taskService: TaskService,
+    private dialog: MatDialog
+  ) {}
 
   removerTask(id: number) {
     this.todoService.deleteTask(id).subscribe({
@@ -38,5 +46,13 @@ export class ManagementTasks {
         console.error('Erro ao atualizar tarefa:', err);
       },
     });
+  }
+
+  openDialog(type: 'delete' | 'edit', data: any) {
+    if (type === 'delete') {
+      this.dialog.open(ConfirmationDialog, { data });
+    } else if (type === 'edit') {
+      this.dialog.open(EditDialog, { data });
+    }
   }
 }
