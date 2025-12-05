@@ -1,8 +1,10 @@
 <div class="container">
-  <h4>Confirmar exclusão</h4>
-  <p>Deseja realmente excluir a tarefa?</p>
-  <div class="d-flex gap-2 btn-area">
-    <button class="btn btn-outline-primary" (click)="close()">Cancelar</button>
-    <button class="btn btn-danger" (click)="confirm()">Confirmar</button>
+  <div class="w-100">
+    <p class="fw-bold fs-4">Confirmar exclusão</p>
+    <p class="text-secondary">Deseja realmente excluir a tarefa?</p>
+    <div class="d-flex gap-2 btn-area align-content-end">
+      <button class="btn btn-outline-primary rounded-5" (click)="close()">Cancelar</button>
+      <button class="btn btn-danger rounded-5" (click)="confirm()">Confirmar</button>
+    </div>
   </div>
 </div>
